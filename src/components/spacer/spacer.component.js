@@ -1,5 +1,3 @@
-import React from "react";
-import { View } from "react-native";
 import styled from "styled-components/native";
 
 const sizeVariant = {
@@ -19,6 +17,7 @@ const getVariant = (position, size, theme) => {
   const sizeIndex = sizeVariant[size];
   const property = positionVariant[position];
   const value = theme.space[sizeIndex];
+
   return `${property}:${value}`;
 };
 
