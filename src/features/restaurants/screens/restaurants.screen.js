@@ -16,10 +16,14 @@ const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-const RestaurantListContainer = styled(FlatList)`
-  padding: 16px;
+const RestaurantListContainer = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})`
   background-color: ${(props) => props.theme.colors.bg.blue};
-`
+`;
+
 export const RestaurantsScreen = () => (
   <SafeArea>
     <SearchContainer>
