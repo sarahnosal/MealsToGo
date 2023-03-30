@@ -16,6 +16,21 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
+const TAB_ICON = {
+  Restaurants: "ios-restaurant",
+  Map: "map",
+  Settings: "ios-settings",
+};
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+  };
+};
+
 const Settings = () => (
   <SafeArea>
     <Text>Settings</Text>
@@ -46,22 +61,11 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
-
-                if (route.name === "Restaurants") {
-                  iconName = "ios-restaurant";
-                } else if (route.name === "Map") {
-                  iconName = "map";
-                } else if (route.name === "Settings") {
-                  iconName = "ios-settings";
-                }
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-            })}
+            screenOptions={createScreenOptions}
+            tabBarOptions={{
+              activeTintColor: "tomato",
+              inactiveTintColor: "gray",
+            }}
           >
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Map} />
