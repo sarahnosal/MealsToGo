@@ -13,6 +13,7 @@ import {
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { Ionicons } from "@expo/vector-icons";
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,6 +45,7 @@ const Map = () => (
 );
 
 export default function App() {
+  restaurantsRequest();
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
