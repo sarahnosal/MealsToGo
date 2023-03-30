@@ -12,6 +12,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,16 +27,6 @@ const Map = () => (
     <Text>Map</Text>
   </SafeArea>
 );
-
-const MyTabs = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-      <Tab.Screen name="Map" component={Map} />
-      <Tab.Screen name="Settings" component={Settings} />
-    </Tab.Navigator>
-  );
-};
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -54,7 +45,28 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <MyTabs />
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === "Restaurants") {
+                  iconName = "ios-restaurant";
+                } else if (route.name === "Map") {
+                  iconName = "map";
+                } else if (route.name === "Settings") {
+                  iconName = "ios-settings";
+                }
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: "tomato",
+              tabBarInactiveTintColor: "gray",
+            })}
+          >
+            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Tab.Screen name="Map" component={Map} />
+            <Tab.Screen name="Settings" component={Settings} />
+          </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
