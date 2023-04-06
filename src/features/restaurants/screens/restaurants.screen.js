@@ -1,19 +1,14 @@
 import React, { useContext } from "react";
-import { Searchbar } from "react-native-paper";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
 import { SafeArea } from "../../../components/utility/safe-area.component";
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
-import { restaurantsRequest } from "../../../services/restaurants/restaurants.service";
+import { ActivityIndicator } from "react-native-paper";
+import { Search } from "../components/search.component";
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
-const SearchContainer = styled.View`
-  background-color: ${(props) => props.theme.colors.bg.green};
-  padding: ${(props) => props.theme.space[3]};
-`;
-
-const RestaurantListContainer = styled(FlatList).attrs({
+const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 16,
   },
@@ -21,17 +16,28 @@ const RestaurantListContainer = styled(FlatList).attrs({
   background-color: ${(props) => props.theme.colors.bg.blue};
 `;
 
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
 export const RestaurantsScreen = () => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+
   return (
     <SafeArea>
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
-      <RestaurantListContainer
+      {isLoading && (
+        <LoadingContainer>
+          <ActivityIndicator size={50} animating={true} color="#e76f51" />
+        </LoadingContainer>
+      )}
+      <Search />
+      <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
-          console.log(item);
           return (
             <Spacer position="bottom" size="large">
               <RestaurantInfoCard restaurant={item} />
