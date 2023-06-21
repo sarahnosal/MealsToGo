@@ -8,7 +8,11 @@ import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
 
 const Tab = createBottomTabNavigator();
-
+const Map = () => (
+  <SafeArea>
+    <Text>Map</Text>
+  </SafeArea>
+);
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
