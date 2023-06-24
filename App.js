@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import {
@@ -28,25 +29,9 @@ const firebaseConfig = {
   measurementId: "G-KWV2MVBCMZ",
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+initializeApp(firebaseConfig);
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      signInWithEmailAndPassword(auth, "nosalsm@gmail.com", "duchess")
-        .then((user) => {
-          console.log(user);
-          setIsAuthenticated(true);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }, 2000);
-  }, []);
-
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -59,20 +44,18 @@ export default function App() {
     return null;
   }
 
-  if (!isAuthenticated) {
-    return null;
-  }
-
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavoritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavoritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavoritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavoritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
