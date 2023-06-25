@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ThemeProvider } from "styled-components/native";
