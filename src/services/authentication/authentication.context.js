@@ -38,29 +38,29 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
-  // const onRegister = (email, password, repeatedPassword) => {
-  //   setIsLoading(true);
-  //   if (password !== repeatedPassword) {
-  //     setError("Error: Passwords do not match");
-  //     return;
-  //   }
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((u) => {
-  //       setUser(u);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((e) => {
-  //       setIsLoading(false);
-  //       setError(e.toString());
-  //     });
-  // };
+  const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords do not match");
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
 
-  // const onLogout = () => {
-  //   signOut(auth).then(() => {
-  //     setUser(null);
-  //     setError(null);
-  //   });
-  // };
+  const onLogout = () => {
+    signOut(auth).then(() => {
+      setUser(null);
+      setError(null);
+    });
+  };
 
   return (
     <AuthenticationContext.Provider
@@ -70,8 +70,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
-        // onRegister,
-        // onLogout,
+        onRegister,
+        onLogout,
       }}
     >
       {children}
