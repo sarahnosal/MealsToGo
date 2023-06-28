@@ -9,10 +9,8 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
+
 import { Navigation } from "./src/infrastructure/navigation";
-import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA_mLnq8gUJGZ0xB4JIx7I8ZY__0bxYd6A",
@@ -43,13 +41,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavoritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavoritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
