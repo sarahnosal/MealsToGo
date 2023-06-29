@@ -9,14 +9,7 @@ import { Search } from "../components/search.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
-
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})`
-  background-color: ${(props) => props.theme.colors.bg.blue};
-`;
+import { RestaurantList } from "../components/restaurant-list.styles";
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
