@@ -12,16 +12,13 @@ import { FavoritesContext } from "../../../services/favorites/favorites.context"
 import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
 import { RestaurantList } from "../components/restaurant-list.styles";
 
-const Loading = styled(ActivityIndicator)`
-  margin-left: -25px;
-`;
 const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
   left: 50%;
 `;
 export const RestaurantsScreen = ({ navigation }) => {
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
   const { favorites } = useContext(FavoritesContext);
   const [isToggled, setIsToggled] = useState(false);
 

@@ -14,6 +14,13 @@ const SettingsItem = styled(List.Item)`
 const AvatarContainer = styled.View`
   align-items: center;
 `;
+const handleLeftFav = (props) => (
+  <List.Icon {...props} color="black" icon="heart" />
+);
+
+const handleLeftLogOut = (props) => (
+  <List.Icon {...props} color="black" icon="door" />
+);
 
 export const SettingsScreen = ({ navigation }) => {
   const { onLogout, user } = useContext(AuthenticationContext);
@@ -30,12 +37,12 @@ export const SettingsScreen = ({ navigation }) => {
         <SettingsItem
           title="Favourites"
           description="View your favourites"
-          left={(props) => <List.Icon {...props} color="black" icon="heart" />}
+          left={handleLeftFav}
           onPress={() => navigation.navigate("Favorites")}
         />
         <SettingsItem
           title="Logout"
-          left={(props) => <List.Icon {...props} color="black" icon="door" />}
+          left={handleLeftLogOut}
           onPress={onLogout}
         />
       </List.Section>
