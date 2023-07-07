@@ -7,6 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "publish-app": "expo publish",
     "eject": "expo eject",
     "lint": "eslint . --ext .js"
   },
@@ -20,8 +21,10 @@
     "@react-navigation/stack": "^6.3.16",
     "camelize": "^1.0.1",
     "expo": "~48.0.6",
+    "expo-camera": "~13.2.1",
     "expo-font": "~11.1.1",
     "expo-status-bar": "~1.4.4",
+    "expo-updates": "~0.16.4",
     "firebase": "^9.23.0",
     "lottie-react-native": "5.1.4",
     "react": "18.2.0",
